@@ -8,7 +8,7 @@ import logging
 from getpass import getpass
 
 
-URL="https://cloud.gov.lv" #Prism API URL
+URL="" #Prism API URL
 #-----------------------------------------------------------------------------
 
 username=input("Nutanix username:")
