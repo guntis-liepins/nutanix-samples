@@ -34,10 +34,11 @@ cp -r cloud-init-samples templates
 Then REPLACE all marked data with own values in cloud init files
 
 Scripts:
-    - nutanix_api-list.py - You can test functionality of nutanixapi by running script nutanix_api-list.py and find out UUIDs of objects
-    - create_vm.py - example how to create VM
-    - power.py - example how to power on and off VM
+    1. nutanix_api-list.py - You can test functionality of nutanixapi by running script nutanix_api-list.py and find out UUIDs of objects
+    2. create_vm.py - example how to create VM
+    3. power.py - example how to power on and off VM
 
+Before running samples scripts set parameters in script files
 
 
 
