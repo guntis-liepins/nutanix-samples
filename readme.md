@@ -1,6 +1,8 @@
-To use samples clone sample githube repository
+To use samples clone sample github repository https://github.com/guntis-liepins/nutanix-samples.git
 
-https://github.com/guntis-liepins/nutanix-samples.git
+```
+git clone https://github.com/guntis-liepins/nutanix-samples.git
+```
 
 Change to this directory and then create virtual environment in venv folder
 (naming it venv can help Visual Studio code to work with virtualenv)

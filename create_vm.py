@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 import os
 import json
@@ -36,8 +36,7 @@ def main():
 
     vm_name=""    #Name of VM
     vm_dns=""     #DNS name of VM
-    vm_ip=""      #VM IP
-
+    vm_ip=""      #VM IP , optional
     vm_description="" #description of VM
     sockets=1
     vcpu_per_socket=1
@@ -48,6 +47,29 @@ def main():
 
     #create VM
     print("Creating VM")
+
+   #  There are three cases in Nutanix:
+   #              network_cfg = None
+   #                            Assign ip address automatically DHCP. 
+   #                            Must be used by only on networks managed by nutanix.
+   #              network_cfg (String) = ip_address
+   #                            Assign specified ip_address. 
+   #                            Sets specified IP address using Nutanix. Netmask and gatway is 
+   #                            inherited from network definition 
+   #                            Must be used by networks managed by nutanix,otherwise it will fail.
+   #                            (with error Cannot assign IP address in unmanaged network)
+   #              network_cfg (Dictionary) = 
+   #                              { ip_address  (String)
+   #                                prefix (String)
+   #                                default_gw (String)
+   #                                dns_server1 (String)
+   #                                dns_server2 (String)   
+   #                                dns_search  (String)
+   #                              }
+   #                             Sets network according to dictionary.
+   #                             Must be used for networks not managed by Nutanix 
+
+
     response=api.create_vm_simple(
                     vm_name=vm_name,
                     vm_description=vm_description,
@@ -61,8 +83,9 @@ def main():
                     num_sockets=sockets,
                     memory_size_mib=memory_mb,
                     template_dir=template_dir,
-                    network_cfg=vm_ip
+                    network_cfg=None
                     )
+                        
     (status_code,result_json)=api.process_response(response)
     api.continue_if_ok(status_code,"ERROR: vm creation call failed")
     vm_uuid=result_json['metadata']['uuid']
