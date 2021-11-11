@@ -1,2 +1,2 @@
 wheel
-git+git://github.com/guntis-liepins/nutanixapi.git@dev
+git+git://github.com/guntis-liepins/nutanixapi.git@master
