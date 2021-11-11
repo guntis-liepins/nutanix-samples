@@ -36,9 +36,5 @@ cloud_final_modules:
 runcmd:
   - [ /usr/bin/rm,-f,/etc/netplan/50* ]
   - [ /usr/sbin/netplan,apply ]
-  - [ mount -o ro -t iso9660 /dev/sr0 /mnt ]
-  - [ /usr/bin/python3 /mnt/installer/linux/install_ngt.py ]
-
-
-
+  
 final_message: "The system is finally up, after $UPTIME seconds"

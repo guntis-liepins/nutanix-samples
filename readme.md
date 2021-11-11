@@ -4,16 +4,14 @@ To use samples clone sample github repository https://github.com/guntis-liepins/
 git clone https://github.com/guntis-liepins/nutanix-samples.git
 ```
 
-Change to this directory and then create virtual environment in venv folder
+Change to this directory and then create and activate python virtualenv in venv folder
 (naming it venv can help Visual Studio code to work with virtualenv)
 ```
 ctrlz@vulcan:~/Projects/Python$ cd nutanixapi-samples
 ctrlz@vulcan:~/Projects/Python/nutanixapi-samples$ python3 -m venv venv
-```
-Activate python project:
-```
 ctrlz@vulcan:~/Projects/Python/nutanixapi-samples$ source venv/bin/activate
 ```
+
 First install wheel to be able to install nutanix packages from source.
 This is due unsolved bug - wheel installs after nutanixapi so nutanixapi install will fail.
 Need to be done only once when new virtualenv is created.
