@@ -1,0 +1,41 @@
+#cloud-config
+groups:
+  - ansible
+
+users:
+  - default
+  - name: ansible
+    primary_group: ansible
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: "REPLACE Password hash made by mkpasswd -m sha-512 --rounds=4096"
+    homedir: /home/ansible
+    ssh_authorized_keys:
+      - "REPLACE with authorized key"
+  - name: root
+    lock_passwd: false
+    passwd: "REPLACE Password hash made by mkpasswd -m sha-512 --rounds=4096"
+
+write_files:
+  - encoding: b64
+    owner: root:root
+    path: /etc/netplan/00-installer-config.yaml
+    content: {{netplan_content}}
+    permissions: "0644"
+
+network:
+  config: disabled
+
+cloud_config_modules:
+  - runcmd
+
+cloud_final_modules:
+  - scripts-user
+
+runcmd:
+  - [ /usr/bin/rm,-f,/etc/netplan/50* ]
+  - [ /usr/sbin/netplan,apply ]
+
+
+final_message: "The system is finally up, after $UPTIME seconds"

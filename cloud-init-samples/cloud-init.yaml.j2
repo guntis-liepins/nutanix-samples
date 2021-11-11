@@ -1,0 +1,23 @@
+#cloud-config
+groups:
+  - ansible
+
+users:
+  - default
+  - name: ansible
+    primary_group: ansible
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    lock_passwd: false
+    passwd: "REPLACE Password hash made by mkpasswd -m sha-512 --rounds=4096"
+    homedir: /home/ansible
+    ssh_authorized_keys:
+      - "REPLACE with authorized keys"
+  - name: root
+    lock_passwd: false
+    passwd: "REPLACE Password hash made by mkpasswd -m sha-512 --rounds=4096"
+
+runcmd:
+  - [ mount -o ro -t iso9660 /dev/sr0 /mnt ]
+  - [ /usr/bin/python3 /mnt/installer/linux/install_ngt.py ]
+  - [ umount -l /mnt ]

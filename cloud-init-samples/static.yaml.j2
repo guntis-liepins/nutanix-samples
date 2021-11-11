@@ -1,0 +1,13 @@
+      network:
+        ethernets:
+          ens3:
+            addresses:
+            - {{ip_address}}{{prefix}}
+            gateway4: {{default_gw}}
+            nameservers:
+              addresses:
+              - {{dns_server1}}
+              - {{dns_server2}}
+              search:
+              - {{dns_search}}
+        version: 2
